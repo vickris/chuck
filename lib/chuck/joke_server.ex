@@ -57,7 +57,7 @@ defmodule Chuck.JokeServer do
 
   @impl GenServer
   def handle_call(:get_random_joke, _from, state) do
-    case ChuckService.get_joke() do
+    case Chuck.ChuckService.get_joke() do
       {:ok, body} ->
         joke = body["value"]
         state = %{state | "all_jokes" => [body | state["all_jokes"]]}

@@ -26,7 +26,7 @@ defmodule Chuck.JokeServer do
   end
 
   def favorite_joke(pid, joke_id) do
-    GenServer.call(pid, {:favorite_joke, joke_id})
+    GenServer.cast(pid, {:favorite_joke, joke_id})
   end
 
   def favorite_jokes(pid) do
@@ -56,6 +56,19 @@ defmodule Chuck.JokeServer do
   end
 
   @impl GenServer
+  def handle_cast({:favorite_joke, id}, state) do
+    case joke_by_id(state["all_jokes"], id) do
+      nil ->
+        Logger.log(:error, "Could not find joke with id #{id}")
+        {:noreply, state}
+
+      joke ->
+        state = %{state | "favorite_jokes" => [joke | state["favorite_jokes"]]}
+        {:noreply, joke, state}
+    end
+  end
+
+  @impl GenServer
   def handle_call(:get_random_joke, _from, state) do
     case Chuck.ChuckService.get_joke() do
       {:ok, body} ->
@@ -71,18 +84,6 @@ defmodule Chuck.JokeServer do
       other_error ->
         Logger.log(:error, "Other error: #{inspect(other_error)}")
         {:reply, "Encountered error retrieving joke", state}
-    end
-  end
-
-  @impl GenServer
-  def handle_call({:favorite_joke, id}, _from, state) do
-    case joke_by_id(state["all_jokes"], id) do
-      nil ->
-        {:reply, "Joke not found", state}
-
-      joke ->
-        state = %{state | "favorite_jokes" => [joke | state["favorite_jokes"]]}
-        {:reply, joke, state}
     end
   end
 

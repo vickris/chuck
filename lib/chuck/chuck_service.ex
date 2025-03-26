@@ -5,8 +5,8 @@ defmodule Chuck.ChuckService do
 
     with {:ok, response} <- HTTPoison.get(url, headers),
          {:ok, joke} <- Jason.decode(response.body),
-         %{"value" => _value, "id" => _id} <- joke do
-      {:ok, joke}
+         %{"value" => value, "id" => id} <- joke do
+      {:ok, %{"value" => value, "id" => id}}
     else
       {:error, %HTTPoison.Error{} = error} ->
         IO.puts("HTTP Error: #{inspect(error)}")

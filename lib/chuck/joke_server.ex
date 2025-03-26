@@ -64,7 +64,7 @@ defmodule Chuck.JokeServer do
 
       joke ->
         state = %{state | "favorite_jokes" => [joke | state["favorite_jokes"]]}
-        {:noreply, joke, state}
+        {:noreply, state}
     end
   end
 

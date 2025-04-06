@@ -3,7 +3,7 @@ defmodule Chuck.Application do
 
   def start(_type, _args) do
     children = [
-      {Chuck.UserManagementServer, []},
+      Chuck.UserManagementServer,
       {Plug.Cowboy, scheme: :http, plug: ChuckWeb.Router, options: [port: 4000]}
     ]
 

@@ -4,10 +4,10 @@ Chuck is a coding test to show some understanding of how to build a backend. It 
 ## Brief
 We want you to build an application in Elixir that will: Display a list of jokes from the Chuck Norris API
 
-Allows a user to favourite jokes.
-Allows a user to retrieve their favourite jokes.
-Allows a user to share his favourite jokes with another user.
-The only requirements other than the functionality above are:
+- Allows a user to favourite jokes.
+- Allows a user to retrieve their favourite jokes.
+- Allows a user to share his favourite jokes with another user.
+- The only requirements other than the functionality above are:
 
 All actions should be accessible through HTTP, this does not mean it needs a visual interface, an API is fine too.
 You should not use an external database.

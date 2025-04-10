@@ -1,5 +1,5 @@
 # Chuck
-Chuck is a coding test to show some understanding of how to build a backend. It fetches jokes from the Chuck Norris Joke API. This was a take home assignment and I landed the job. It said to do it in four hours but I could take as long as I wanted. I took ten hours to make sure it was complete and relatively polished.
+Chuck is a coding test to show some understanding of how to build a backend. It fetches jokes from the Chuck Norris Joke API. 
 
 ## Brief
 We want you to build an application in Elixir that will: Display a list of jokes from the Chuck Norris API
